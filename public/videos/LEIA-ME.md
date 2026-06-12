@@ -1,4 +1,17 @@
-# Vídeos de animação (.mp4)
+# Vídeos (.mp4)
+
+## Vídeo de fundo do banner (hero)
+
+Coloca aqui o vídeo (ex.: `hero.mp4`) e em `src/data.ts` adiciona ao slide:
+
+```ts
+video: '/videos/hero.mp4',
+```
+
+O vídeo toca automaticamente em loop, sem som, atrás do texto do banner
+(tem prioridade sobre `image`). Recomendado: 1080p, H.264, 10–20 s, < 8 MB.
+
+## Vídeos de animação 3D
 
 Coloca aqui os teus vídeos, por exemplo:
 

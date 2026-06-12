@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react'
+import { HeroFx } from './HeroFx'
 import { useLang } from '../i18n'
 
 const AUTOPLAY_MS = 6500
@@ -32,7 +33,18 @@ export function HeroSlider() {
           className={`hero__slide ${i === active ? 'hero__slide--active' : ''}`}
         >
           <div className="hero__bg">
-            {slide.image && <img className="hero__img" src={slide.image} alt="" />}
+            {slide.video ? (
+              <video
+                className="hero__video"
+                src={slide.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : (
+              slide.image && <img className="hero__img" src={slide.image} alt="" />
+            )}
             {slide.orbs.map((orb, j) => (
               <div
                 key={j}
@@ -82,6 +94,9 @@ export function HeroSlider() {
           </div>
         </div>
       ))}
+
+      {/* camada de animação "marketing motion" (partículas + ícones flutuantes) */}
+      <HeroFx />
 
       <div className="hero__controls">
         <div className="hero__counter">

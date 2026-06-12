@@ -51,6 +51,7 @@ export function ProjectModal({
           <X size={20} />
         </button>
 
+        <div className="modal__scroll">
         {/* hero */}
         <div
           className="modal__hero"
@@ -121,6 +122,7 @@ export function ProjectModal({
               {tm.cta} <ArrowRight className="arrow" size={17} />
             </Link>
           </aside>
+        </div>
         </div>
 
         {/* navegação entre projetos */}

@@ -2002,6 +2002,71 @@ article.project-card--wide,
   opacity: 0.3;
 }
 
+/* vídeo de fundo do hero (quando definido em data.ts) */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+  filter: saturate(1.05);
+}
+
+[data-theme='light'] .hero__video {
+  opacity: 0.34;
+}
+
+/* ---------- Hero FX: partículas + ícones de marketing ---------- */
+
+.hero-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-fx__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.75;
+}
+
+.hero-fx__icon {
+  position: absolute;
+  opacity: 0.45;
+  animation-name: fx-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes fx-float {
+  from {
+    transform: translateY(-16px) rotate(-7deg);
+  }
+  to {
+    transform: translateY(16px) rotate(8deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-fx__icon {
+    display: none; /* em ecrãs pequenos os ícones sobrepor-se-iam ao texto */
+  }
+  .hero-fx__canvas {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fx {
+    display: none;
+  }
+}
+
 /* ---------- Project card com imagem ---------- */
 
 .project-card__bg img {
@@ -2224,11 +2289,38 @@ article.project-card--wide,
   width: min(960px, 100%);
   max-height: 92vh;
   max-height: 92dvh; /* browsers móveis (barra de endereço dinâmica) */
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* o scroll vive no .modal__scroll para não quebrar os cantos */
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: clamp(16px, 2vw, 24px);
   animation: modal-in 0.5s var(--ease-out) both;
+}
+
+.modal__scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.modal__scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal__scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 8px;
+}
+
+.modal__scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 @keyframes modal-in {
@@ -2459,8 +2551,10 @@ article.project-card--wide,
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px clamp(24px, 4vw, 40px);
+  padding: 14px clamp(24px, 4vw, 40px);
   border-top: 1px solid var(--border);
+  flex-shrink: 0; /* rodapé sempre visível; só o conteúdo faz scroll */
+  background: var(--surface);
 }
 
 .modal__counter {

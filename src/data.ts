@@ -29,6 +29,9 @@ export type HeroSlide = {
   ghost: { label: string; to: string }
   orbs: { color: string; top: string; left: string; size: number }[]
   image?: string
+  /** Vídeo de fundo (.mp4 em /public/videos) — tem prioridade sobre image.
+      Ex.: video: '/videos/hero.mp4' */
+  video?: string
 }
 
 export type Service = {

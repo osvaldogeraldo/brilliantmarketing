@@ -1,9 +1,26 @@
 import { ArrowUpRight } from 'lucide-react'
 import type { Project } from '../data'
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  onClick,
+}: {
+  project: Project
+  onClick?: () => void
+}) {
   return (
-    <article className={`project-card ${project.wide ? 'project-card--wide' : ''}`}>
+    <article
+      className={`project-card ${project.wide ? 'project-card--wide' : ''}`}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault()
+          onClick()
+        }
+      }}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+    >
       <div
         className="project-card__bg"
         style={project.image ? undefined : { background: project.gradient }}

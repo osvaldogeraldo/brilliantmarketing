@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Check } from 'lucide-react'
 import { HeroSlider } from '../components/HeroSlider'
@@ -5,12 +6,15 @@ import { Marquee } from '../components/Marquee'
 import { Testimonials } from '../components/Testimonials'
 import { Stats } from '../components/Stats'
 import { ProjectCard } from '../components/ProjectCard'
+import { ProjectModal } from '../components/ProjectModal'
 import { Reveal } from '../hooks/useReveal'
 import { useLang } from '../i18n'
 
 export function Home() {
   const { t, c } = useLang()
   const th = t.home
+  const [selected, setSelected] = useState<number | null>(null)
+  const featured = c.projects.slice(0, 5)
 
   return (
     <>
@@ -142,12 +146,23 @@ export function Home() {
           </Reveal>
 
           <div className="portfolio-grid">
-            {c.projects.slice(0, 5).map((p, i) => (
+            {featured.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.06} className={p.wide ? 'project-card--wide' : ''}>
-                <ProjectCard project={p} />
+                <ProjectCard project={p} onClick={() => setSelected(i)} />
               </Reveal>
             ))}
           </div>
+
+          {selected !== null && featured[selected] && (
+            <ProjectModal
+              project={featured[selected]}
+              index={selected}
+              total={featured.length}
+              onClose={() => setSelected(null)}
+              onPrev={() => setSelected((selected - 1 + featured.length) % featured.length)}
+              onNext={() => setSelected((selected + 1) % featured.length)}
+            />
+          )}
         </div>
       </section>
 

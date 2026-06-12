@@ -2196,6 +2196,319 @@ article.project-card--wide,
   gap: 5px;
 }
 
+/* ---------- Modal de projeto ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(5, 5, 7, 0.78);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 40px);
+  animation: overlay-in 0.35s var(--ease-out) both;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  position: relative;
+  width: min(960px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: clamp(16px, 2vw, 24px);
+  animation: modal-in 0.5s var(--ease-out) both;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(48px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(10, 10, 11, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transition: all 0.3s var(--ease-out);
+}
+
+.modal__close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.modal__hero {
+  position: relative;
+  height: clamp(220px, 32vw, 320px);
+  overflow: hidden;
+}
+
+.modal__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal__hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(22px, 4vw, 36px);
+  background: linear-gradient(to top, rgba(5, 5, 6, 0.9) 0%, rgba(5, 5, 6, 0.3) 55%, transparent 85%);
+}
+
+.modal__hero-overlay h2 {
+  color: #fff;
+  font-size: clamp(1.5rem, 3.5vw, 2.3rem);
+  max-width: 22ch;
+}
+
+.modal__body {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: clamp(28px, 4vw, 48px);
+  padding: clamp(24px, 4vw, 40px);
+}
+
+@media (max-width: 720px) {
+  .modal__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal__lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 26px;
+}
+
+.modal__main h3 {
+  font-size: 1.05rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 26px 0 10px;
+}
+
+.modal__main h3:first-of-type {
+  margin-top: 0;
+}
+
+.modal__main p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.modal__results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.modal__result {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 14px;
+  text-align: center;
+}
+
+.modal__result strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  background: linear-gradient(120deg, var(--accent), var(--lime));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.modal__result span {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.modal__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: start;
+  position: sticky;
+  top: 0;
+}
+
+.modal__fact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal__fact span {
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.modal__fact strong {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  text-align: right;
+}
+
+.modal__tags-block {
+  padding: 18px 0;
+}
+
+.modal__tags-label {
+  display: block;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.modal__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modal__tag {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(255, 92, 26, 0.25);
+}
+
+.modal__cta {
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.modal__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px clamp(24px, 4vw, 40px);
+  border-top: 1px solid var(--border);
+}
+
+.modal__counter {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.modal__counter strong {
+  color: var(--text);
+  font-size: 16px;
+}
+
+/* ---------- Lightbox (galeria CGI) ---------- */
+
+.lightbox {
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lightbox__close {
+  position: fixed;
+}
+
+.lightbox__figure {
+  margin: 0;
+  max-width: min(1100px, 94vw);
+  animation: modal-in 0.5s var(--ease-out) both;
+}
+
+.lightbox__figure img {
+  max-height: 72vh;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox__figure figcaption {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.lightbox__figure figcaption span {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--lime);
+}
+
+.lightbox__figure figcaption h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-top: 4px;
+}
+
+.lightbox__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lightbox .modal__counter {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.lightbox .modal__counter strong {
+  color: #fff;
+}
+
 @media (max-width: 640px) {
   .hero__controls {
     flex-direction: column;

@@ -52,6 +52,13 @@ export type Project = {
   wide?: boolean
 }
 
+export type ProjectDetail = {
+  challenge: string
+  solution: string
+  results: { value: string; label: string }[]
+  tags: string[]
+}
+
 export type Model3D = {
   id: number
   title: string
@@ -120,6 +127,7 @@ export type SiteContent = {
   services: Service[]
   process: ProcessStep[]
   projects: Project[]
+  projectDetails: Record<number, ProjectDetail>
   projectCategories: string[]
   models3d: Model3D[]
   videos3d: Video3D[]
@@ -393,6 +401,129 @@ const pt: SiteContent = {
       gradient: gradients.pink,
     },
   ],
+
+  projectDetails: {
+    1: {
+      challenge: 'A TechCorp precisava de se destacar entre mais de 200 expositores na Expo Maputo — com apenas seis semanas até à abertura do certame.',
+      solution: 'Projetámos o stand em 3D interativo e obtivemos aprovação do cliente em 48 horas. Estrutura, LED wall panorâmico e zona de demonstração foram produzidos nas nossas oficinas e montados no recinto sem uma única alteração em obra.',
+      results: [
+        { value: '+1.200', label: 'contactos qualificados' },
+        { value: '120 m²', label: 'de área construída' },
+        { value: '#1', label: 'stand mais visitado' },
+      ],
+      tags: ['Design 3D', 'Produção Própria', 'Montagem', 'LED Wall'],
+    },
+    2: {
+      challenge: 'Fotografar produto fresco com consistência entre dezenas de variações de campanha era caro, lento e dependente da época.',
+      solution: 'Criámos os citrinos em CGI fotorrealista — modelação, materiais e iluminação de estúdio virtual — permitindo gerar qualquer ângulo ou composição sem nova sessão fotográfica.',
+      results: [
+        { value: '-60%', label: 'custo vs. fotografia' },
+        { value: '12', label: 'peças de campanha' },
+        { value: '4K', label: 'renders finais' },
+      ],
+      tags: ['CGI', 'Modelação 3D', 'Iluminação Virtual', 'Pós-produção'],
+    },
+    3: {
+      challenge: 'O spot de TV exigia mãos robóticas em movimento ultra-realista — impossível de filmar com adereços físicos dentro do orçamento.',
+      solution: 'Modelámos e animámos as mãos em 3D hard-surface, com rigging completo de dedos e articulações, e integrámos a animação no footage real do spot.',
+      results: [
+        { value: '30s', label: 'de animação final' },
+        { value: '3', label: 'semanas de produção' },
+        { value: '2M+', label: 'visualizações do spot' },
+      ],
+      tags: ['Animação 3D', 'Hard-Surface', 'Rigging', 'Compositing'],
+    },
+    4: {
+      challenge: 'O banco enfrentava queda de notoriedade junto do público jovem urbano, num mercado cada vez mais disputado.',
+      solution: 'Campanha 360° com nova linguagem visual: spots de TV e rádio, outdoors nas principais avenidas e ativação digital em simultâneo.',
+      results: [
+        { value: '+34%', label: 'notoriedade da marca' },
+        { value: '5', label: 'cidades cobertas' },
+        { value: '90', label: 'dias de campanha' },
+      ],
+      tags: ['Campanha 360°', 'TV & Rádio', 'Outdoor', 'Digital'],
+    },
+    5: {
+      challenge: 'Prazo de montagem de apenas 48 horas no recinto da FACIM, com inauguração oficial marcada e sem margem para atrasos.',
+      solution: 'Stand modular pré-fabricado em oficina e aprovado pelo cliente em 3D interativo, reduzindo o trabalho no local a encaixes e acabamentos.',
+      results: [
+        { value: '48h', label: 'de montagem no local' },
+        { value: '60 m²', label: 'de stand modular' },
+        { value: '0', label: 'alterações em obra' },
+      ],
+      tags: ['Stand Modular', 'Design 3D', 'Produção', 'Logística'],
+    },
+    6: {
+      challenge: 'O catálogo impresso não mostrava o detalhe técnico do equipamento e ficava desatualizado a cada revisão de produto.',
+      solution: 'Modelámos o equipamento em 3D com precisão de engenharia e integrámos um visualizador interativo 360° no website do cliente.',
+      results: [
+        { value: '360°', label: 'visualização interativa' },
+        { value: '-40%', label: 'dúvidas pré-venda' },
+        { value: '8', label: 'modelos publicados' },
+      ],
+      tags: ['Modelação 3D', 'Web 3D', 'Texturização'],
+    },
+    7: {
+      challenge: 'A marca tinha 12 linhas de produto com identidades desalinhadas e pouca força na prateleira face à concorrência.',
+      solution: 'Rebranding completo: novo logótipo, sistema de embalagem unificado e manual de marca aplicado a todos os pontos de contacto.',
+      results: [
+        { value: '12', label: 'linhas redesenhadas' },
+        { value: '+22%', label: 'vendas em 6 meses' },
+        { value: '1', label: 'manual de marca completo' },
+      ],
+      tags: ['Rebranding', 'Embalagem', 'Manual de Marca'],
+    },
+    8: {
+      challenge: 'Apresentar um portefólio energético complexo de forma memorável para decisores, investidores e imprensa.',
+      solution: 'Pavilhão imersivo de dois pisos com percurso interativo, LED wall e sala de reuniões privada — integralmente aprovado em 3D antes da produção.',
+      results: [
+        { value: '2', label: 'pisos construídos' },
+        { value: '15', label: 'reuniões executivas no local' },
+        { value: '0', label: 'alterações em obra' },
+      ],
+      tags: ['Pavilhão', 'Design 3D', 'Experiência Interativa'],
+    },
+    9: {
+      challenge: 'A campanha digital precisava de visuais de produto em cinco dias — sem tempo para organizar produção fotográfica.',
+      solution: 'Reutilizámos o pipeline CGI já criado para a marca e gerámos uma série de renders em alta resolução dentro do prazo.',
+      results: [
+        { value: '5', label: 'dias do briefing à entrega' },
+        { value: '9', label: 'renders finais' },
+        { value: '3', label: 'formatos de campanha' },
+      ],
+      tags: ['CGI', 'Renders', 'Campanha Digital'],
+    },
+    10: {
+      challenge: 'Lançar uma app de pagamentos num mercado dominado por dois operadores estabelecidos há mais de uma década.',
+      solution: 'Estratégia digital de lançamento: teasing com influenciadores, performance ads segmentados e campanha de onboarding incentivado.',
+      results: [
+        { value: '50 mil', label: 'instalações no 1.º mês' },
+        { value: 'x3', label: 'vendas online em 3 meses' },
+        { value: '12', label: 'influenciadores ativados' },
+      ],
+      tags: ['Performance', 'Social Media', 'Marketing de Influência'],
+    },
+    11: {
+      challenge: 'Transformar um outdoor estático numa avenida movimentada num canal mensurável de interação com o público.',
+      solution: 'Outdoor com QR dinâmico ligado a uma landing page gamificada, com prémios instantâneos para quem interagia.',
+      results: [
+        { value: '18 mil', label: 'interações em 2 semanas' },
+        { value: '32%', label: 'conversão da landing page' },
+        { value: '24/7', label: 'medição em tempo real' },
+      ],
+      tags: ['OOH', 'Interatividade', 'Gamificação'],
+    },
+    12: {
+      challenge: 'Presença digital dispersa por seis empresas do grupo, sem voz coerente nem calendário editorial.',
+      solution: 'Gestão integral centralizada: calendário editorial único, identidade visual coesa e relatórios mensais por empresa.',
+      results: [
+        { value: '6', label: 'marcas geridas' },
+        { value: '+180%', label: 'alcance médio mensal' },
+        { value: '30+', label: 'conteúdos por mês' },
+      ],
+      tags: ['Social Media', 'Conteúdo', 'Reporting'],
+    },
+  },
 
   projectCategories: ['Todos', 'Stands', '3D', 'Publicidade', 'Branding', 'Digital'],
 
@@ -765,6 +896,129 @@ const en: SiteContent = {
       gradient: gradients.pink,
     },
   ],
+
+  projectDetails: {
+    1: {
+      challenge: 'TechCorp needed to stand out among 200+ exhibitors at Expo Maputo — with only six weeks until opening day.',
+      solution: 'We designed the stand in interactive 3D and got client approval within 48 hours. Structure, panoramic LED wall and demo area were produced in our own workshops and assembled on site without a single change order.',
+      results: [
+        { value: '+1,200', label: 'qualified leads' },
+        { value: '120 m²', label: 'built area' },
+        { value: '#1', label: 'most visited stand' },
+      ],
+      tags: ['3D Design', 'In-house Production', 'Assembly', 'LED Wall'],
+    },
+    2: {
+      challenge: 'Shooting fresh produce consistently across dozens of campaign variations was expensive, slow and season-dependent.',
+      solution: 'We built the citrus in photorealistic CGI — modelling, materials and virtual studio lighting — enabling any angle or composition without another photo shoot.',
+      results: [
+        { value: '-60%', label: 'cost vs. photography' },
+        { value: '12', label: 'campaign assets' },
+        { value: '4K', label: 'final renders' },
+      ],
+      tags: ['CGI', '3D Modelling', 'Virtual Lighting', 'Post-production'],
+    },
+    3: {
+      challenge: 'The TV spot called for ultra-realistic robotic hands in motion — impossible to film with physical props within budget.',
+      solution: 'We modelled and animated the hands in hard-surface 3D, with full finger and joint rigging, and composited the animation into the spot’s live footage.',
+      results: [
+        { value: '30s', label: 'of final animation' },
+        { value: '3', label: 'weeks of production' },
+        { value: '2M+', label: 'spot views' },
+      ],
+      tags: ['3D Animation', 'Hard-Surface', 'Rigging', 'Compositing'],
+    },
+    4: {
+      challenge: 'The bank was losing awareness among young urban audiences in an increasingly contested market.',
+      solution: '360° campaign with a fresh visual language: TV and radio spots, billboards on the main avenues and simultaneous digital activation.',
+      results: [
+        { value: '+34%', label: 'brand awareness' },
+        { value: '5', label: 'cities covered' },
+        { value: '90', label: 'campaign days' },
+      ],
+      tags: ['360° Campaign', 'TV & Radio', 'Outdoor', 'Digital'],
+    },
+    5: {
+      challenge: 'Only 48 hours of on-site assembly time at FACIM, with the official opening scheduled and zero slack.',
+      solution: 'A modular stand pre-built in our workshop and approved by the client in interactive 3D, reducing on-site work to fitting and finishing.',
+      results: [
+        { value: '48h', label: 'on-site assembly' },
+        { value: '60 m²', label: 'modular stand' },
+        { value: '0', label: 'change orders' },
+      ],
+      tags: ['Modular Stand', '3D Design', 'Production', 'Logistics'],
+    },
+    6: {
+      challenge: 'The printed catalogue failed to show the equipment’s technical detail and went stale with every product revision.',
+      solution: 'We modelled the equipment in 3D with engineering precision and embedded an interactive 360° viewer on the client’s website.',
+      results: [
+        { value: '360°', label: 'interactive viewing' },
+        { value: '-40%', label: 'pre-sales questions' },
+        { value: '8', label: 'models published' },
+      ],
+      tags: ['3D Modelling', 'Web 3D', 'Texturing'],
+    },
+    7: {
+      challenge: 'The brand had 12 product lines with misaligned identities and weak shelf presence against competitors.',
+      solution: 'Complete rebranding: new logo, unified packaging system and brand guidelines applied to every touchpoint.',
+      results: [
+        { value: '12', label: 'lines redesigned' },
+        { value: '+22%', label: 'sales in 6 months' },
+        { value: '1', label: 'complete brand manual' },
+      ],
+      tags: ['Rebranding', 'Packaging', 'Brand Guidelines'],
+    },
+    8: {
+      challenge: 'Presenting a complex energy portfolio memorably to decision-makers, investors and press.',
+      solution: 'A two-storey immersive pavilion with an interactive visitor journey, LED wall and private meeting room — fully approved in 3D before production.',
+      results: [
+        { value: '2', label: 'floors built' },
+        { value: '15', label: 'executive meetings hosted' },
+        { value: '0', label: 'change orders' },
+      ],
+      tags: ['Pavilion', '3D Design', 'Interactive Experience'],
+    },
+    9: {
+      challenge: 'The digital campaign needed product visuals in five days — no time to organise a photo production.',
+      solution: 'We reused the brand’s existing CGI pipeline and generated a series of high-resolution renders within the deadline.',
+      results: [
+        { value: '5', label: 'days from brief to delivery' },
+        { value: '9', label: 'final renders' },
+        { value: '3', label: 'campaign formats' },
+      ],
+      tags: ['CGI', 'Renders', 'Digital Campaign'],
+    },
+    10: {
+      challenge: 'Launching a payments app in a market dominated by two operators established for over a decade.',
+      solution: 'Digital launch strategy: influencer teasing, segmented performance ads and an incentivised onboarding campaign.',
+      results: [
+        { value: '50k', label: 'installs in month 1' },
+        { value: 'x3', label: 'online sales in 3 months' },
+        { value: '12', label: 'influencers activated' },
+      ],
+      tags: ['Performance', 'Social Media', 'Influencer Marketing'],
+    },
+    11: {
+      challenge: 'Turning a static billboard on a busy avenue into a measurable channel of audience interaction.',
+      solution: 'A billboard with a dynamic QR linked to a gamified landing page, with instant prizes for everyone who interacted.',
+      results: [
+        { value: '18k', label: 'interactions in 2 weeks' },
+        { value: '32%', label: 'landing page conversion' },
+        { value: '24/7', label: 'real-time measurement' },
+      ],
+      tags: ['OOH', 'Interactivity', 'Gamification'],
+    },
+    12: {
+      challenge: 'Digital presence scattered across six group companies, with no coherent voice or editorial calendar.',
+      solution: 'Centralised full management: a single editorial calendar, cohesive visual identity and monthly reports per company.',
+      results: [
+        { value: '6', label: 'brands managed' },
+        { value: '+180%', label: 'average monthly reach' },
+        { value: '30+', label: 'pieces of content per month' },
+      ],
+      tags: ['Social Media', 'Content', 'Reporting'],
+    },
+  },
 
   projectCategories: ['All', 'Stands', '3D', 'Advertising', 'Branding', 'Digital'],
 

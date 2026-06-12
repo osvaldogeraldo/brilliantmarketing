@@ -125,6 +125,18 @@ const ptUI = {
     ctaText: 'Conte-nos o seu desafio e receba uma proposta personalizada em menos de 48 horas.',
     ctaBtn: 'Pedir Proposta Grátis',
   },
+  modal: {
+    client: 'Cliente',
+    year: 'Ano',
+    category: 'Categoria',
+    challenge: 'O desafio',
+    solution: 'A solução',
+    results: 'Resultados',
+    services: 'Serviços envolvidos',
+    cta: 'Quero um projeto assim',
+    close: 'Fechar',
+    project: 'Projeto',
+  },
   portfolio: {
     crumb: 'Portfólio',
     title: (
@@ -380,6 +392,18 @@ const enUI: typeof ptUI = {
     ),
     ctaText: 'Tell us your challenge and receive a tailored proposal in under 48 hours.',
     ctaBtn: 'Get a Free Quote',
+  },
+  modal: {
+    client: 'Client',
+    year: 'Year',
+    category: 'Category',
+    challenge: 'The challenge',
+    solution: 'The solution',
+    results: 'Results',
+    services: 'Services involved',
+    cta: 'I want a project like this',
+    close: 'Close',
+    project: 'Project',
   },
   portfolio: {
     crumb: 'Portfolio',

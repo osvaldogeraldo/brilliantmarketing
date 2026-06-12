@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Play } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
 import { Model3DViewer } from '../components/Model3DViewer'
+import { Lightbox } from '../components/Lightbox'
 import { Reveal } from '../hooks/useReveal'
 import { useLang } from '../i18n'
 
@@ -10,6 +11,7 @@ export function Projects3D() {
   const { t, c } = useLang()
   const t3 = t.p3d
   const [activeModel, setActiveModel] = useState(0)
+  const [lightbox, setLightbox] = useState<number | null>(null)
   const model = c.models3d[activeModel]
 
   return (
@@ -66,7 +68,18 @@ export function Projects3D() {
           <div className="cgi-grid">
             {c.cgiGallery.map((g, i) => (
               <Reveal key={g.title} delay={(i % 2) * 0.08}>
-                <figure className="cgi-card">
+                <figure
+                  className="cgi-card"
+                  onClick={() => setLightbox(i)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      setLightbox(i)
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
                   <img src={g.img} alt={g.title} loading="lazy" />
                   <figcaption>
                     <span>{g.tag}</span>
@@ -76,6 +89,16 @@ export function Projects3D() {
               </Reveal>
             ))}
           </div>
+
+          {lightbox !== null && (
+            <Lightbox
+              items={c.cgiGallery}
+              index={lightbox}
+              onClose={() => setLightbox(null)}
+              onPrev={() => setLightbox((lightbox - 1 + c.cgiGallery.length) % c.cgiGallery.length)}
+              onNext={() => setLightbox((lightbox + 1) % c.cgiGallery.length)}
+            />
+          )}
         </div>
       </section>
 

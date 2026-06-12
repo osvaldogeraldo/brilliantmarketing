@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
 import { ProjectCard } from '../components/ProjectCard'
+import { ProjectModal } from '../components/ProjectModal'
 import { Reveal } from '../hooks/useReveal'
 import { useLang } from '../i18n'
 
@@ -11,6 +12,7 @@ export function Portfolio() {
   const tp = t.portfolio
   // índice 0 = "Todos" / "All"
   const [filterIdx, setFilterIdx] = useState(0)
+  const [selected, setSelected] = useState<number | null>(null)
 
   const cats = c.projectCategories
   const filtered =
@@ -32,7 +34,10 @@ export function Portfolio() {
                 type="button"
                 key={cat}
                 className={`filter-btn ${filterIdx === i ? 'filter-btn--active' : ''}`}
-                onClick={() => setFilterIdx(i)}
+                onClick={() => {
+                  setFilterIdx(i)
+                  setSelected(null)
+                }}
               >
                 {cat}
               </button>
@@ -47,10 +52,21 @@ export function Portfolio() {
                 className={p.wide ? 'project-card--wide' : ''}
                 style={{ animationDelay: `${i * 0.06}s` }}
               >
-                <ProjectCard project={p} />
+                <ProjectCard project={p} onClick={() => setSelected(i)} />
               </div>
             ))}
           </div>
+
+          {selected !== null && filtered[selected] && (
+            <ProjectModal
+              project={filtered[selected]}
+              index={selected}
+              total={filtered.length}
+              onClose={() => setSelected(null)}
+              onPrev={() => setSelected((selected - 1 + filtered.length) % filtered.length)}
+              onNext={() => setSelected((selected + 1) % filtered.length)}
+            />
+          )}
         </div>
       </section>
 

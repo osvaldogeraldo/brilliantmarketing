@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, X } from 'lucide-react'
 import type { Project } from '../data'
@@ -41,7 +42,9 @@ export function ProjectModal({
     }
   }, [onClose, onPrev, onNext])
 
-  return (
+  // portal: o <main> tem transform (animação de página), o que prenderia
+  // o position:fixed do modal — renderizar no <body> resolve
+  return createPortal(
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="modal__close" onClick={onClose} aria-label={tm.close}>
@@ -133,6 +136,7 @@ export function ProjectModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

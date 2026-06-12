@@ -1836,7 +1836,9 @@ article.project-card--wide,
 /* ---------- Page transition ---------- */
 
 .page-enter {
-  animation: page-fade 0.55s var(--ease-out) both;
+  /* sem fill-mode: o transform não pode persistir depois da animação,
+     senão cria um containing block para elementos position:fixed */
+  animation: page-fade 0.55s var(--ease-out);
 }
 
 @keyframes page-fade {
@@ -2221,6 +2223,7 @@ article.project-card--wide,
   position: relative;
   width: min(960px, 100%);
   max-height: 92vh;
+  max-height: 92dvh; /* browsers móveis (barra de endereço dinâmica) */
   overflow-y: auto;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -2301,6 +2304,30 @@ article.project-card--wide,
 @media (max-width: 720px) {
   .modal__body {
     grid-template-columns: 1fr;
+  }
+  .modal__aside {
+    position: static; /* sem sticky em coluna única */
+  }
+}
+
+@media (max-width: 560px) {
+  .modal-overlay {
+    padding: 8px;
+  }
+  .modal__close {
+    width: 40px;
+    height: 40px;
+    top: 12px;
+    right: 12px;
+  }
+  .modal__nav {
+    padding: 14px 18px;
+  }
+  .modal__hero {
+    height: 190px;
+  }
+  .lightbox__figure img {
+    max-height: 56vh;
   }
 }
 

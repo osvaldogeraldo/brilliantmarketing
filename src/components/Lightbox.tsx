@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { ArrowLeft, ArrowRight, X } from 'lucide-react'
 import type { CgiItem } from '../data'
 
@@ -32,7 +33,8 @@ export function Lightbox({
     }
   }, [onClose, onPrev, onNext])
 
-  return (
+  // portal para o <body> — fora do <main> animado (transform criaria containing block)
+  return createPortal(
     <div className="modal-overlay lightbox" onClick={onClose} role="dialog" aria-modal="true">
       <button type="button" className="modal__close lightbox__close" onClick={onClose} aria-label="Close">
         <X size={20} />
@@ -57,6 +59,7 @@ export function Lightbox({
           <ArrowRight size={18} />
         </button>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

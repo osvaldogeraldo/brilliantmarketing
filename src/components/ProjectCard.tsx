@@ -20,6 +20,12 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="project-card__overlay">
         <span className="project-card__cat">{project.category}</span>
         <h3>{project.title}</h3>
+        <p className="project-card__desc">{project.desc}</p>
+        <div className="project-card__meta">
+          <span>{project.client}</span>
+          <span className="dot" />
+          <span>{project.year}</span>
+        </div>
       </div>
     </article>
   )
